@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SoloLearn
 {
-    class Program
+    class BaseProgram
     {
         static void Main(string[] args)
         {
@@ -24,54 +25,58 @@ namespace SoloLearn
 
             double result;
 
-            try
-            {
+            try{
                 result = firstNumber / secondNumber;
                 Console.WriteLine($"Your result is: {result}");
             }
-            catch (DivideByZeroException)
-            {
+            catch (DivideByZeroException){
                 Console.WriteLine("Opsss, you just tried division by zero... This is not good!");
             }
-            finally
-            {
-                Console.Write("\nYour choise has led you to a mystery Cave...." +
+            finally{
+                Console.WriteLine("\nYour choise has led you to a mystery Cave...." +
                 "\nIf you want to get out  alive, you will have to defeat the Dragon..." +
                 "\nAnd than you might learn the secreat of division by Zero.." +
-                "\nOr you will just Die.  \n");
+                "\nOr you will just Die.");
             }
             //finaly go to new stage of game
-
+            Console.WriteLine("------------------");
             Player player = new Player();
-            player.AskName();//Asked a player Name
-            Console.WriteLine($"Our new HERO is:{player}.\nWelcome to Cave Journey!!!");
-            //Player name stage
-
-
-
-        }//static void
-    }//class Main
-    public class Player
-    {
-        public string Name;
-        public short Heals;
-        public void AskName()
-        {
-            Console.WriteLine("Enter Your Name new Hero:");
-            Name = Console.ReadLine();
-        }
-        public void PlayerHeals()
-        {
-            Heals = 2;
-            if (Heals == 0)
+            Console.WriteLine("Enter your name Hero!");
+            try//check for player name
             {
+                player.Name = Console.ReadLine(); ;//set a player Name
+                Console.WriteLine($"Our new HERO is:{player.Name}.\nWelcome to Cave Journey!!!");//get name
+                if (string.IsNullOrWhiteSpace(player.Name))
+                    throw new NullOrSpaceExeption();
+                
+            }
+            catch (NullOrSpaceExeption)
+            {
+                Console.WriteLine("Fogot to enter your name? No problem! You will be NoNameHero");
+                player.Name = "NoNameHero";
+            }
+            Console.ReadLine();
+        }//static void Main
+    }//class BaseProgram
+    public class Player{
+        public string Name { get; set; }
+        public short Heals;
+        public void PlayerHeals(){
+            Heals = 2;
+            if (Heals == 0){
                 Console.WriteLine("Im sorry but you a loser..");
             }
-        }//class Player
-
-        public class Dragon
-        {
-            public short HealsPoints;
-
         }
+    }
+    public class Dragon{
+        public short HealsPoints;
+        }
+    public class NullOrSpaceExeption : Exception
+    {
+        string ifSpace = " ";
+        if (ifSpace==" "){
+
+            }
+
+    }
     }//namespace
