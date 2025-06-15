@@ -1,4 +1,4 @@
-﻿using SoloLearn;
+using SoloLearn;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +24,7 @@ namespace SoloLearn
                 Console.WriteLine($"\nFirst number is:  {firstNumber};");
                 //first block
 
-                Console.WriteLine("Please input your second number:");
+                Console.WriteLine("Please input your second integer number:");
                 int secondNumber = Convert.ToInt32(Console.ReadLine());
                 Thread.Sleep(900);
                 Console.WriteLine($"\nSecond number is:  {secondNumber};");
