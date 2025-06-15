@@ -123,15 +123,13 @@ namespace SoloLearn
                 int firstRandNumber = random.Next(1, 20);
                 int secondRandNumber = random.Next(1, 20);
                 int mathResult = firstRandNumber + secondRandNumber;
+                Console.WriteLine(mathResult);
                 Console.WriteLine($"1 Challenge:  {firstRandNumber} + {secondRandNumber} =?!");
-                string playerAnswer = TimeOutReadLine(10000);// timeout method for answer with 10 sec
-                if (int.TryParse(playerAnswer, out int playerAnswerInt)&&playerAnswerInt == mathResult)
-                {
-                    dragon.HealsPoints--;
-                    Console.WriteLine($"Super -1 HP of Dragon.\nDragon has {dragon.HealsPoints}\nYou Have:{player.HealsPoints}.");
-                }
-                else if (int.TryParse(playerAnswer, out int playerResult) && playerResult == mathResult)
-                {
+
+                string playerAnswer = TimeOutReadLine(10000);// timeout method for answer with 10 sec// number from player
+                bool isAnswerPlayerRight = int.TryParse(playerAnswer, out int playerResult);
+                 if (isAnswerPlayerRight && playerResult == mathResult)
+                    {
                     dragon.HealsPoints--;
                     Console.WriteLine($"Dragon has been damaged for 1HP.\n He has {dragon.HealsPoints}.");
                     if (dragon.HealsPoints == 1)
@@ -140,10 +138,12 @@ namespace SoloLearn
                         int lastQuestFirstNumber = 896;
                         int lastQuestSecondNumber = 789;
                         int resultLastMathQuest = lastQuestFirstNumber + lastQuestSecondNumber;
+
                         Console.WriteLine($"Solve this: {lastQuestFirstNumber} + {lastQuestSecondNumber} =!?");
-                        string lastMathResult = Console.ReadLine();
+                        string lastMathResult = TimeOutReadLine(8000); ;
                         int fakeResult = 1685;
-                        if (int.TryParse(lastMathResult, out int lastResult) && lastResult == fakeResult)
+                        bool islastMathResult = int.TryParse(lastMathResult, out int lastResult);
+                        if (islastMathResult && lastResult == fakeResult)
                         {
                             throw new RightPlayerAnswerException();
                         }
