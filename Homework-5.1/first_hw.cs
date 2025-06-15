@@ -28,7 +28,7 @@ namespace SoloLearn
                 int secondNumber = Convert.ToInt32(Console.ReadLine());
                 Thread.Sleep(900);
                 Console.WriteLine($"\nSecond number is:  {secondNumber};");
-                result = firstNumber / secondNumber;
+                var result = firstNumber / secondNumber;//make it posibl for chek like 13/133=0.098..
                 Thread.Sleep(1000);
                 Console.WriteLine($"Your result is: {result}");
                 return;
